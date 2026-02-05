@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:cerv_two/core/entities/model.dart';
 
 class ProductModel extends Model {
-  final String name;
-  final double value;
-  final int registration;
+  String name;
+  double valueInCents;
+  int registration;
 
   ProductModel({
     String? id,
     required this.name,
-    required this.value,
+    required this.valueInCents,
     required this.registration,
   }) : super(id);
 
@@ -17,7 +17,7 @@ class ProductModel extends Model {
     return <String, dynamic>{
       'id': super.id,
       'name': name,
-      'value': value,
+      'valueInCents': valueInCents,
       'registration': registration,
     };
   }
@@ -26,7 +26,7 @@ class ProductModel extends Model {
     return ProductModel(
       id: map['id'] as String,
       name: map['name'] as String,
-      value: map['value'] as double,
+      valueInCents: map['valueInCents'] as double,
       registration: map['registration'] as int,
     );
   }
