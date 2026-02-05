@@ -6,6 +6,6 @@ class DependencyInjection {
   static final GetIt _sl = GetIt.instance;
 
   static void addDI() {
-    _sl.registerSingleton<IDatabaseService>(DatabaseService.db);
+    _sl.registerSingleton<IDatabaseService>(const DatabaseService());
   }
 }

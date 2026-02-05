@@ -4,9 +4,8 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as p;
 
 class DatabaseService implements IDatabaseService {
-  DatabaseService._();
+  const DatabaseService();
 
-  static final DatabaseService db = DatabaseService._();
   static Database? _database;
 
   @override
