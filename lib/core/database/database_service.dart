@@ -31,10 +31,12 @@ class DatabaseService implements IDatabaseService {
           CREATE TABLE IF NOT EXISTS product (
             id TEXT PRIMARY KEY,
             name TEXT NOT NULL,
-            value REAL NOT NULL,
+            valueInCents INTEGER NOT NULL,
             registration INTEGER NOT NULL UNIQUE,
-            created_at TEXT DEFAULT CURRENT_TIMESTAMP
-          );,
+            created_at TEXT DEFAULT (datetime('now')),
+            CONSTRAINT value_error CHECK (value >= 0),
+            CONSTRAINT registration_error CHECK (registration >= 0)
+          );
         ''');
 
         await db.execute('''
@@ -43,8 +45,8 @@ class DatabaseService implements IDatabaseService {
             product_id INTEGER,
             old_value TEXT,
             new_value TEXT,
-            created_at TEXT DEFAULT CURRENT_TIMESTAMP
-          );,
+            created_at TEXT DEFAULT (datetime('now'))
+          );
         ''');
 
         await db.execute('''
@@ -56,12 +58,12 @@ class DatabaseService implements IDatabaseService {
               OLD.id, 
               json_object(
                 'name', OLD.name, 
-                'value', OLD.value, 
+                'valueInCents', OLD.valueInCents, 
                 'registration', OLD.registration
               ), 
               json_object(
                 'name', NEW.name, 
-                'value', NEW.value, 
+                'valueInCents', NEW.valueInCents, 
                 'registration', NEW.registration
               )
             );
@@ -78,7 +80,7 @@ class DatabaseService implements IDatabaseService {
               NULL, 
               json_object(
                 'name', NEW.name, 
-                'value', NEW.value, 
+                'valueInCents', NEW.valueInCents, 
                 'registration', NEW.registration
               )
             );
@@ -94,7 +96,7 @@ class DatabaseService implements IDatabaseService {
               OLD.id, 
               json_object(
                 'name', OLD.name, 
-                'value', OLD.value, 
+                'valueInCents', OLD.valueInCents, 
                 'registration', OLD.registration
               ),
               NULL
