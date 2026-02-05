@@ -12,12 +12,11 @@ class DatabaseService implements IDatabaseService {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await initializeDb();
+    _database = await _initializeDb();
     return _database!;
   }
 
-  @override
-  Future<Database> initializeDb() async {
+  Future<Database> _initializeDb() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
 
     final path = p.join(documentsDirectory.path, "db.db");
