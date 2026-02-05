@@ -32,7 +32,7 @@ class DatabaseService implements IDatabaseService {
             id TEXT PRIMARY KEY,
             name TEXT NOT NULL,
             value REAL NOT NULL,
-            enrollment INTEGER NOT NULL UNIQUE,
+            registration INTEGER NOT NULL UNIQUE,
             created_at TEXT DEFAULT CURRENT_TIMESTAMP
           );,
         ''');
@@ -57,12 +57,12 @@ class DatabaseService implements IDatabaseService {
               json_object(
                 'name', OLD.name, 
                 'value', OLD.value, 
-                'enrollment', OLD.enrollment
+                'registration', OLD.registration
               ), 
               json_object(
                 'name', NEW.name, 
                 'value', NEW.value, 
-                'enrollment', NEW.enrollment
+                'registration', NEW.registration
               )
             );
           END;
@@ -79,7 +79,7 @@ class DatabaseService implements IDatabaseService {
               json_object(
                 'name', NEW.name, 
                 'value', NEW.value, 
-                'enrollment', NEW.enrollment
+                'registration', NEW.registration
               )
             );
           END;
@@ -95,7 +95,7 @@ class DatabaseService implements IDatabaseService {
               json_object(
                 'name', OLD.name, 
                 'value', OLD.value, 
-                'enrollment', OLD.enrollment
+                'registration', OLD.registration
               ),
               NULL
             );
