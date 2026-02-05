@@ -1,0 +1,6 @@
+import 'package:sqflite/sqflite.dart';
+
+abstract interface class IDatabaseService {
+  Future<Database> get database;
+  Future<Database> initializeDb();
+}
