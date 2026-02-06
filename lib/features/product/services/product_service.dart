@@ -2,6 +2,7 @@ import 'package:cerv_two/core/database/i_database_service.dart';
 import 'package:cerv_two/core/errors/bad_parameters_exception.dart';
 import 'package:cerv_two/core/errors/resource_already_exists_exception.dart';
 import 'package:cerv_two/core/errors/server_exception.dart';
+import 'package:cerv_two/core/models/pagination_model.dart';
 import 'package:cerv_two/dependency_injection.dart';
 import 'package:cerv_two/features/product/model/product_model.dart';
 import 'package:cerv_two/features/product/services/i_product_service.dart';
@@ -38,14 +39,21 @@ class ProductService implements IProductService {
   }
 
   @override
-  Future<List<ProductModel>> getAll() async {
+  Future<PaginationModel<ProductModel>> getAll(int page, int pageSize) async {
     final db = await sl<IDatabaseService>().database;
 
-    final res = await db.query("product", orderBy: "created_at ASC");
+    final res = await db.query(
+      "product",
+      offset: (page - 1) * pageSize,
+      limit: pageSize,
+      orderBy: "created_at ASC",
+    );
 
-    if (res.isEmpty) return [];
-
-    return res.map((e) => ProductModel.fromMap(e)).toList();
+    return PaginationModel<ProductModel>(
+      items: res.map((e) => ProductModel.fromMap(e)).toList(),
+      pageSize: pageSize,
+      page: page,
+    );
   }
 
   @override
