@@ -5,4 +5,7 @@ class ServerException implements AppException {
   final String message;
 
   ServerException(String error) : message = "Erro desconhecido: $error";
+
+  @override
+  String toString() => message;
 }

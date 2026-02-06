@@ -5,4 +5,7 @@ class BadParametersException implements AppException {
   final String message;
 
   BadParametersException(this.message);
+
+  @override
+  String toString() => message;
 }
