@@ -3,8 +3,10 @@ import 'package:cerv_two/core/entities/model.dart';
 
 class ProductModel extends Model {
   String name;
-  double valueInCents;
+  int valueInCents;
   int registration;
+
+  double get value => valueInCents / 100;
 
   ProductModel({
     String? id,
@@ -26,7 +28,7 @@ class ProductModel extends Model {
     return ProductModel(
       id: map['id'] as String,
       name: map['name'] as String,
-      valueInCents: map['valueInCents'] as double,
+      valueInCents: map['valueInCents'] as int,
       registration: map['registration'] as int,
     );
   }
