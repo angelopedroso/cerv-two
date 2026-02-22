@@ -38,8 +38,12 @@ dependencies:
   get_it: 
   uuid:
   sqflite: 
+  sqflite_common_ffi: 
   path_provider: 
   path:
+  window_manager:
+  infinite_scroll_pagination:
+  intl:
 
 dev_dependencies:
   flutter_test:
