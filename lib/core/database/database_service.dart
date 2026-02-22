@@ -29,10 +29,10 @@ class DatabaseService implements IDatabaseService {
           CREATE TABLE IF NOT EXISTS product (
             id TEXT PRIMARY KEY,
             name TEXT NOT NULL,
-            valueInCents INTEGER NOT NULL,
+            value_in_cents INTEGER NOT NULL,
             registration INTEGER NOT NULL UNIQUE,
             created_at TEXT DEFAULT (datetime('now')),
-            CONSTRAINT value_error CHECK (value >= 0),
+            CONSTRAINT value_error CHECK (value_in_cents >= 0),
             CONSTRAINT registration_error CHECK (registration >= 0)
           );
         ''');
