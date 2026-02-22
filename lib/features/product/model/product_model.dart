@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cerv_two/core/entities/model.dart';
+import 'package:intl/intl.dart';
 
 class ProductModel extends Model {
   String name;
@@ -7,6 +8,8 @@ class ProductModel extends Model {
   int registration;
 
   double get value => valueInCents / 100;
+  String get currencyValue =>
+      NumberFormat.simpleCurrency(locale: 'pt-BR').format(valueInCents / 100);
 
   ProductModel({
     String? id,
