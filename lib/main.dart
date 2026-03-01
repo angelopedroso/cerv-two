@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cerv_two/core/configs/app_theme.dart';
 import 'package:cerv_two/dependency_injection.dart';
-import 'package:cerv_two/features/product/view/product_list_view.dart';
+import 'package:cerv_two/features/product/view/product_list/product_list_view.dart';
 import 'package:cerv_two/features/product/viewmodel/product_list_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,15 +33,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ProductListViewModel()),
-      ],
-      child: MaterialApp(
-        title: 'Cerv Two',
-        theme: AppTheme.themeData,
-        debugShowCheckedModeBanner: false,
-        home: const ProductListView(),
+    return MaterialApp(
+      title: 'Cerv Two',
+      theme: AppTheme.themeData,
+      debugShowCheckedModeBanner: false,
+      home: ChangeNotifierProvider(
+        create: (_) => sl<ProductListViewModel>(),
+        child: const ProductListView(),
       ),
     );
   }

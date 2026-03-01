@@ -4,6 +4,8 @@ import 'package:cerv_two/features/product/repositories/i_product_repository.dart
 import 'package:cerv_two/features/product/repositories/product_repository.dart';
 import 'package:cerv_two/features/product/services/i_product_service.dart';
 import 'package:cerv_two/features/product/services/product_service.dart';
+import 'package:cerv_two/features/product/viewmodel/product_form_viewmodel.dart';
+import 'package:cerv_two/features/product/viewmodel/product_list_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt sl = GetIt.instance;
@@ -14,6 +16,7 @@ class DependencyInjection {
 
     _addService();
     _addRepository();
+    _viewModel();
   }
 
   static void _addRepository() {
@@ -22,5 +25,10 @@ class DependencyInjection {
 
   static void _addService() {
     sl.registerFactory<IProductService>(() => ProductService());
+  }
+
+  static void _viewModel() {
+    sl.registerFactory<ProductListViewModel>(() => ProductListViewModel());
+    sl.registerFactory<ProductFormViewModel>(() => ProductFormViewModel());
   }
 }
