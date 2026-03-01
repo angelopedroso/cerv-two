@@ -31,4 +31,30 @@ class AppToast {
 
     ScaffoldMessenger.of(context).showSnackBar(toast);
   }
+
+  static void success(BuildContext context, {String? title, String? message}) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    final toast = SnackBar(
+      width: screenWidth * 0.4,
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (title != null)
+            Text(
+              title,
+              style: const TextStyle(
+                color: AppColors.foreground,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          if (message != null) Text(message),
+        ],
+      ),
+      behavior: SnackBarBehavior.floating,
+      duration: const Duration(seconds: 2),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(toast);
+  }
 }
