@@ -9,7 +9,7 @@ class ProductModel extends Model {
 
   double get value => valueInCents / 100;
   String get currencyValue =>
-      NumberFormat.simpleCurrency(locale: 'pt-BR').format(valueInCents / 100);
+      NumberFormat.simpleCurrency(locale: 'pt-BR').format(value);
 
   ProductModel({
     String? id,
