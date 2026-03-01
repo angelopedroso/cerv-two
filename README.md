@@ -1,16 +1,70 @@
-# cerv_two
+# 📦 Cadastro de Produtos --- Flutter
 
-A new Flutter project.
+Aplicação Flutter para cadastro e listagem de produtos utilizando
+**MVVM**, **Provider** e **Dependency Injection**.
 
-## Getting Started
+------------------------------------------------------------------------
 
-This project is a starting point for a Flutter application.
+## 🧱 Arquitetura
 
-A few resources to get you started if this is your first Flutter project:
+- MVVM (Model -- View -- ViewModel)
+- Repository Pattern
+- Dependency Injection (DI)
+- Provider
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+------------------------------------------------------------------------
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📁 Estrutura de Pastas
+
+    lib/
+    │── core/
+    │   ├── configs/
+    │   ├── database/
+    │   ├── entities/
+    │   ├── errors/
+    │   ├── helpers/
+    │   ├── models/
+    │   ├── utils/
+    │   └── widgets/
+    │
+    │── features/
+    │   └── product/
+    │       ├── model/
+    │       ├── repositories/
+    │       ├── services/
+    │       ├── view/
+    │       └── viewmodel/
+    │
+    │── dependency_injection.dart
+    │── main.dart
+
+------------------------------------------------------------------------
+
+## ▶️ Como rodar o projeto
+
+### 1️⃣ Pré-requisitos
+
+    flutter doctor
+
+### 2️⃣ Clonar o repositório
+
+    git clone https://github.com/seu-usuario/seu-repo.git
+    cd seu-repo
+
+### 3️⃣ Instalar dependências
+
+    flutter pub get
+
+### 4️⃣ Executar
+
+    flutter run
+
+------------------------------------------------------------------------
+
+## 🧩 Funcionalidades
+
+- Cadastro de produtos
+- Listagem de produtos
+- Exclusão de produtos
+- Alteração de produtos
+- Estado reativo
