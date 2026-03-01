@@ -22,7 +22,7 @@ class ProductModel extends Model {
     return <String, dynamic>{
       'id': super.id,
       'name': name,
-      'valueInCents': valueInCents,
+      'value_in_cents': valueInCents,
       'registration': registration,
     };
   }
@@ -31,7 +31,7 @@ class ProductModel extends Model {
     return ProductModel(
       id: map['id'] as String,
       name: map['name'] as String,
-      valueInCents: map['valueInCents'] as int,
+      valueInCents: map['value_in_cents'] as int,
       registration: map['registration'] as int,
     );
   }

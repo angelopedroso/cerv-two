@@ -56,12 +56,12 @@ class DatabaseService implements IDatabaseService {
               OLD.id, 
               json_object(
                 'name', OLD.name, 
-                'valueInCents', OLD.valueInCents, 
+                'value_in_cents', OLD.value_in_cents, 
                 'registration', OLD.registration
               ), 
               json_object(
                 'name', NEW.name, 
-                'valueInCents', NEW.valueInCents, 
+                'value_in_cents', NEW.value_in_cents, 
                 'registration', NEW.registration
               )
             );
@@ -78,7 +78,7 @@ class DatabaseService implements IDatabaseService {
               NULL, 
               json_object(
                 'name', NEW.name, 
-                'valueInCents', NEW.valueInCents, 
+                'value_in_cents', NEW.value_in_cents, 
                 'registration', NEW.registration
               )
             );
@@ -94,7 +94,7 @@ class DatabaseService implements IDatabaseService {
               OLD.id, 
               json_object(
                 'name', OLD.name, 
-                'valueInCents', OLD.valueInCents, 
+                'value_in_cents', OLD.value_in_cents, 
                 'registration', OLD.registration
               ),
               NULL
