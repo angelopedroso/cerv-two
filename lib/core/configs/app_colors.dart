@@ -25,7 +25,7 @@ class AppColors {
   static const destructive = Color(0xFFE5484D);
   static const destructiveForeground = Color(0xFFFDFDFD);
 
-  static const border = Color(0xFFEAEAEA);
+  static const border = Color(0xFFE5E5E5);
   static const input = Color(0xFFEAEAEA);
 
   static const ring = Color(0xFFB4B4B4);

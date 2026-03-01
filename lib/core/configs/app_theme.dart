@@ -4,29 +4,39 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static final themeData = ThemeData(
     useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
     brightness: Brightness.light,
 
     inputDecorationTheme: InputDecorationTheme(
+      isDense: true,
       filled: true,
-      fillColor: AppColors.input,
+      fillColor: Colors.transparent,
       hintStyle: const TextStyle(
         color: AppColors.mutedForeground,
         fontWeight: FontWeight.bold,
       ),
-      contentPadding: const EdgeInsets.all(6),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.border),
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: AppColors.input, width: 1),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(color: AppColors.border),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.ring, width: 1.5),
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: AppColors.destructive, width: 1),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: AppColors.destructive, width: 1.5),
       ),
     ),
 
@@ -41,17 +51,29 @@ class AppTheme {
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        elevation: 0,
-        backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.primaryForeground,
-        textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(100)),
+      style: ButtonStyle(
+        elevation: const WidgetStatePropertyAll(0),
+        overlayColor: WidgetStateColor.resolveWith((states) {
+          if (states.contains(WidgetState.hovered)) {
+            return AppColors.gradientStart;
+          }
+
+          return AppColors.primary;
+        }),
+        backgroundColor: const WidgetStatePropertyAll(AppColors.primary),
+        foregroundColor: const WidgetStatePropertyAll(
+          AppColors.primaryForeground,
+        ),
+        textStyle: const WidgetStatePropertyAll(
+          TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+        ),
+        shape: const WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+          ),
         ),
       ),
     ),
-
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.background,
       elevation: 0,
@@ -116,7 +138,13 @@ class AppTheme {
       ),
 
       bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+
       labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+      labelMedium: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColors.mutedForeground,
+      ),
       labelSmall: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
     ),
   );
