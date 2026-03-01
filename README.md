@@ -68,3 +68,9 @@ Aplicação Flutter para cadastro e listagem de produtos utilizando
 - Exclusão de produtos
 - Alteração de produtos
 - Estado reativo
+
+------------------------------------------------------------------------
+
+## Executável
+
+Está localizado na pasta **output/**;
