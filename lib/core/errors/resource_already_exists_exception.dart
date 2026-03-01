@@ -4,8 +4,11 @@ class ResourceAlreadyExistsException implements AppException {
   @override
   final String message;
 
-  ResourceAlreadyExistsException(String field)
-    : message = "$field já existente!";
+  @override
+  final String field;
+
+  ResourceAlreadyExistsException(String fieldV, this.field)
+    : message = "$fieldV já existente!";
 
   @override
   String toString() => message;

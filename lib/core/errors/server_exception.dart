@@ -8,4 +8,7 @@ class ServerException implements AppException {
 
   @override
   String toString() => message;
+
+  @override
+  String get field => "server";
 }
