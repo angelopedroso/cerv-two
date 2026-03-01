@@ -5,6 +5,10 @@ abstract interface class IProductRepository {
   Future add(ProductModel model);
   Future remove(String id);
   Future update(ProductModel model);
-  Future<PaginationModel<ProductModel>> getAll(int page, int pageSize);
+  Future<PaginationModel<ProductModel>> getAll(
+    String? search,
+    int page,
+    int pageSize,
+  );
   Future<ProductModel?> getById(String id);
 }

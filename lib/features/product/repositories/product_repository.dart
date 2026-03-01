@@ -13,8 +13,12 @@ class ProductRepository implements IProductRepository {
   }
 
   @override
-  Future<PaginationModel<ProductModel>> getAll(int page, int pageSize) async {
-    return await _service.getAll(page, pageSize);
+  Future<PaginationModel<ProductModel>> getAll(
+    String? search,
+    int page,
+    int pageSize,
+  ) async {
+    return await _service.getAll(search, page, pageSize);
   }
 
   @override

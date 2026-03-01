@@ -9,6 +9,30 @@ import 'package:cerv_two/features/product/services/i_product_service.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ProductService implements IProductService {
+  void _modifyException(DatabaseException e) {
+    final msg = e.toString();
+
+    if (msg.contains('value_error')) {
+      throw BadParametersException("Valor deve ser maior que 0", "value");
+    }
+
+    if (msg.contains('registration_error')) {
+      throw BadParametersException(
+        "Código de registro do produto deve ser maior que 0",
+        "registration",
+      );
+    }
+
+    if (e.isUniqueConstraintError()) {
+      throw ResourceAlreadyExistsException(
+        "Código de registro",
+        "registration",
+      );
+    }
+
+    throw ServerException(msg);
+  }
+
   @override
   Future add(ProductModel model) async {
     final db = await sl<IDatabaseService>().database;
@@ -16,37 +40,25 @@ class ProductService implements IProductService {
     try {
       await db.insert("product", model.toMap());
     } on DatabaseException catch (e) {
-      print(e.toString());
-
-      final msg = e.toString();
-
-      if (msg.contains('value_error')) {
-        throw BadParametersException("Valor deve ser maior que 0");
-      }
-
-      if (msg.contains('registration_error')) {
-        throw BadParametersException(
-          "Código de registro do produto deve ser maior que 0",
-        );
-      }
-
-      if (e.isUniqueConstraintError()) {
-        throw ResourceAlreadyExistsException("Código de registro");
-      }
-
-      throw ServerException(msg);
+      _modifyException(e);
     }
   }
 
   @override
-  Future<PaginationModel<ProductModel>> getAll(int page, int pageSize) async {
+  Future<PaginationModel<ProductModel>> getAll(
+    String? search,
+    int page,
+    int pageSize,
+  ) async {
     final db = await sl<IDatabaseService>().database;
 
     final res = await db.query(
       "product",
       offset: (page - 1) * pageSize,
       limit: pageSize,
-      orderBy: "created_at ASC",
+      orderBy: "created_at DESC",
+      where: "name LIKE ?",
+      whereArgs: ["%$search%"],
     );
 
     return PaginationModel<ProductModel>(
@@ -86,23 +98,7 @@ class ProductService implements IProductService {
         whereArgs: [model.id],
       );
     } on DatabaseException catch (e) {
-      final msg = e.toString();
-
-      if (msg.contains('value_error')) {
-        throw BadParametersException("Valor deve ser maior que 0");
-      }
-
-      if (msg.contains('registration_error')) {
-        throw BadParametersException(
-          "Código de registro do produto deve ser maior que 0",
-        );
-      }
-
-      if (e.isUniqueConstraintError()) {
-        throw ResourceAlreadyExistsException("Código de registro");
-      }
-
-      throw ServerException(msg);
+      _modifyException(e);
     }
   }
 }
